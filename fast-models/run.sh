@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run --rm -it $* arm-fast-models 
+docker run --rm -it $* armswdev/arm-fast-models 

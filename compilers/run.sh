@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run --rm -it $* arm-bare-metal-compilers
+docker run --rm -it $* armswdev/arm-bare-metal-compilers
