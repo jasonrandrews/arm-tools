@@ -8,10 +8,10 @@ An Ubuntu 20.04 container image with [Arm Compiler](https://developer.arm.com/to
 An Ubuntu 18.04 container image with [Arm Fast Models](https://developer.arm.com/tools-and-software/simulation-models/fast-models)
 
 ### Running the containers
-The containers are avialble on Docker Hub.
+The containers are avialble on [Docker Hub](https://hub.docker.com/r/armswdev/arm-tools)
 ```bash
-$ docker pull armswdev/arm-bare-metal-compilers
-$ docker pull armswdev/arm-fast-models
+$ docker pull armswdev/arm-tools:bare-metal-compilers
+$ docker pull armswdev/arm-tools:fast-models
 ```
 
 FlexLM licenses are not included. If a trial license is needed follow the [instructions on Arm Developer](https://developer.arm.com/documentation/102441/latest/Generate-Fast-Models-product-license)

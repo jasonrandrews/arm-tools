@@ -1,1 +1,1 @@
-docker build -t arm-fast-models -f Dockerfile .
+docker build -t armswdev/arm-tools:fast-models -f Dockerfile .

@@ -1,1 +1,1 @@
-docker build -t arm-bare-metal-compilers -f Dockerfile .
+docker build -t armswdev/arm-tools:bare-metal-compilers -f Dockerfile .
