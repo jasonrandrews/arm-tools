@@ -8,7 +8,7 @@ An Ubuntu 20.04 container image with [Arm Compiler](https://developer.arm.com/to
 An Ubuntu 18.04 container image with [Arm Fast Models](https://developer.arm.com/tools-and-software/simulation-models/fast-models)
 
 ### Running the containers
-The containers are avialble on [Docker Hub](https://hub.docker.com/r/armswdev/arm-tools)
+The containers are available on [Docker Hub](https://hub.docker.com/r/armswdev/arm-tools)
 ```bash
 $ docker pull armswdev/arm-tools:bare-metal-compilers
 $ docker pull armswdev/arm-tools:fast-models
