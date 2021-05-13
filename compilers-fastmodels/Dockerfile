@@ -1,4 +1,4 @@
-FROM amd64/ubuntu:20.04
+FROM amd64/ubuntu:18.04
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
