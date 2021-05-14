@@ -1,21 +1,12 @@
-FROM amd64/ubuntu:18.04
-
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+FROM gitpod/workspace-full-vnc
 
 # general setup
-RUN apt-get update && \
-    apt-get -y install vim wget sudo git make cmake lsb-core libx11-dev libxext6 libsm6 libxcursor1 libxft2 libxrandr2 libxt6 libxinerama1 libz-dev lsb xterm telnet dos2unix iproute2 && \
-    apt-get clean
+RUN sudo apt-get update && \
+    sudo apt-get -y install vim wget sudo git make cmake lsb-core libx11-dev libxext6 libsm6 libxcursor1 libxft2 libxrandr2 libxt6 libxinerama1 libz-dev lsb xterm telnet dos2unix iproute2 && \
+    sudo apt-get clean
 
 # User account
-ENV USER=ubuntu
-
-# Setup default user
-RUN useradd --create-home -s /bin/bash -m $USER && echo "$USER:ubuntu" | chpasswd && adduser $USER sudo
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-WORKDIR /home/$USER
-USER $USER
+ENV USER=gitpod
 
 # install Fast Models
 RUN mkdir /home/$USER/tmp
@@ -25,6 +16,8 @@ ADD --chown=$USER:$USER install-fm.sh /home/$USER
 RUN /home/$USER/install-fm.sh $USER
 RUN sudo rm -rf /home/$USER/tmp
 RUN sudo rm -rf /home/$USER/install-fm.sh
+ADD --chown=$USER:$USER GDBRemoteConnection.so /home/$USER
+ADD --chown=$USER:$USER GDBreadme.txt /home/$USER
 
 # Arm Compiler 6 download file
 ENV AC6=DS500-BN-00026-r5p0-18rel0.tgz
