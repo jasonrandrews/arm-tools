@@ -10,6 +10,9 @@ An Ubuntu 18.04 container image with [Arm Fast Models](https://developer.arm.com
 ### Arm compilers and Fast Models
 An Ubuntu 18.04 container image combining the above compilers and Fast Models content.
 
+### Arm compilers and Fixed Virtual Platforms
+An Ubuntu 18.04 container image combining the above compilers and [Fixed Virtual Platforms](https://developer.arm.com/tools-and-software/simulation-models/fixed-virtual-platforms)
+
 ### Arm compilers and Corstone-300 FVP
 An Ubuntu 18.04 container image combining the above compilers and the [Corstone-300 FVP](https://developer.arm.com/tools-and-software/open-source-software/arm-platforms-software/arm-ecosystem-fvps)
 
@@ -19,6 +22,8 @@ The containers are available on [Docker Hub](https://hub.docker.com/r/armswdev/a
 $ docker pull armswdev/arm-tools:bare-metal-compilers
 $ docker pull armswdev/arm-tools:fast-models
 $ docker pull armswdev/arm-tools:compilers-fastmodels
+$ docker pull armswdev/arm-tools:compilers-fvps
+$ docker pull armswdev/arm-tools:corstone-300-fvp
 ```
 
 FlexLM licenses are not included. If a trial license is needed follow the [instructions on Arm Developer](https://developer.arm.com/documentation/102441/latest/Generate-Fast-Models-product-license)
