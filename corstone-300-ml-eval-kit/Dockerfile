@@ -59,8 +59,9 @@ RUN rm ./FVP_Corstone_SSE-300_Ethos-U55.sh
 ENV PATH "/home/$USER//FVP_Corstone_SSE-300_Ethos-U55/models/Linux64_GCC-6.4:$PATH"
 
 # Copy GDB Plugin for FVP
+RUN mkdir /home/$USER/system
 COPY --chown=$USER:$USER GDBRemoteConnection.so /home/$USER/system
-COPY --chown=$USER:$USER GDBreadme.txt /home/$USER/system-
+COPY --chown=$USER:$USER GDBreadme.txt /home/$USER/system
 
 # Modify the ARMLMD_LICENSE_FILE env var with your license server
 ENV ARMLMD_LICENSE_FILE "7010@localhost"
