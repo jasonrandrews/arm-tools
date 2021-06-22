@@ -30,7 +30,7 @@ RUN rm $AC6
 ENV PATH "/home/$USER/AC6/bin:$PATH"
 
 # Download and install Corestone SSE-300 FVP MPS3
-RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/FVP_Corstone_SSE-300_Ethos-U55_11.12_57.tgz | tar -xz
+RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/MPS3/FVP_Corstone_SSE-300_Ethos-U55_11.14_24.tgz | tar -xz
 RUN ./FVP_Corstone_SSE-300_Ethos-U55.sh --no-interactive --i-agree-to-the-contained-eula -d /home/$USER/FVP_Corstone_SSE-300_Ethos-U55 
 RUN rm ./FVP_Corstone_SSE-300_Ethos-U55.sh
 ENV PATH "/home/$USER//FVP_Corstone_SSE-300_Ethos-U55/models/Linux64_GCC-6.4:$PATH"
