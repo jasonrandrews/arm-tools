@@ -25,6 +25,8 @@ ADD --chown=$USER:$USER install-fm.sh /home/$USER
 RUN /home/$USER/install-fm.sh $USER
 RUN sudo rm -rf /home/$USER/tmp
 RUN sudo rm -rf /home/$USER/install-fm.sh
+ADD --chown=$USER:$USER GDBRemoteConnection.so /home/$USER
+ADD --chown=$USER:$USER GDBreadme.txt /home/$USER
 
 # Arm Compiler 6 download file
 ENV AC6=DS500-BN-00026-r5p0-18rel0.tgz
