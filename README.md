@@ -45,12 +45,12 @@ $ docker pull armswdev/arm-tools:corstone-300-fvp
 An Ubuntu 18.04 container image to run the [ML evaluation kit](https://review.mlplatform.org/plugins/gitiles/ml/ethos-u/ml-embedded-evaluation-kit/+/HEAD/docs/documentation.md#arm_ml-embedded-evaluation-kit).
 
 ```bash
-$ docker pull armswdev/arm-tools:corstone-300-eval-kit
+$ docker pull armswdev/arm-tools:corstone-300-ml-eval-kit
 ```
 
 The same content but built on the base Gitpod container is also available.
 ```bash
-$ docker pull armswdev/arm-tools:corstone-300-eval-kit-gitpod
+$ docker pull armswdev/arm-tools:corstone-300-ml-eval-kit-gitpod
 ```
 
 ### Running the containers
