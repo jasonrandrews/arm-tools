@@ -6,6 +6,6 @@ if [ -z "$1" ]; then
     exit 
 fi
 
-pushd /home/$1/tmp/FastModels_11-14-021_Linux64
+pushd /home/$1/tmp/FastModels_11-16-014_Linux64
 ./setup.sh --i-accept-the-license-agreement --basepath /home/$1/FM
 popd

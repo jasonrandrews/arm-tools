@@ -20,7 +20,7 @@ USER $USER
 # install Fast Models
 RUN mkdir /home/$USER/tmp
 RUN mkdir /home/$USER/FM
-ADD --chown=$USER:$USER FastModels_11-14-021_Linux64.tgz /home/$USER/tmp
+ADD --chown=$USER:$USER FastModels_11-16-014_Linux64.tgz /home/$USER/tmp
 ADD --chown=$USER:$USER install-fm.sh /home/$USER
 RUN /home/$USER/install-fm.sh $USER
 RUN sudo rm -rf /home/$USER/tmp
@@ -31,4 +31,4 @@ ENV ARMLMD_LICENSE_FILE "7010@localhost"
 ENV ARM_TOOL_VARIANT  "ult"
 
 # environment
-RUN echo ". /home/$USER/FM/FastModelsTools_11.14/source_all.sh" >> /home/$USER/.bashrc
+RUN echo ". /home/$USER/FM/FastModelsTools_11.16/source_all.sh" >> /home/$USER/.bashrc

@@ -11,7 +11,7 @@ ENV USER=gitpod
 # install Fast Models
 RUN mkdir /home/$USER/tmp
 RUN mkdir /home/$USER/FM
-ADD --chown=$USER:$USER FastModels_11-14-021_Linux64.tgz /home/$USER/tmp
+ADD --chown=$USER:$USER FastModels_11-16-014_Linux64.tgz /home/$USER/tmp
 ADD --chown=$USER:$USER install-fm.sh /home/$USER
 RUN /home/$USER/install-fm.sh $USER
 RUN sudo rm -rf /home/$USER/tmp
@@ -20,7 +20,7 @@ ADD --chown=$USER:$USER GDBRemoteConnection.so /home/$USER
 ADD --chown=$USER:$USER GDBreadme.txt /home/$USER
 
 # Arm Compiler 6 download file
-ENV AC6=DS500-BN-00026-r5p0-18rel0.tgz
+ENV AC6=DS500-BN-00026-r5p0-19rel0.tgz
 
 # Install Arm Compiler 6
 RUN wget https://developer.arm.com/-/media/Files/downloads/compiler/$AC6
@@ -32,17 +32,17 @@ RUN rm $AC6
 ENV PATH "/home/$USER/AC6/bin:$PATH"
 
 # Install Cortex-R and Cortex-M bare metal GNU tools
-RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 | tar xj
-ENV PATH "/home/$USER/gcc-arm-none-eabi-10-2020-q4-major/bin:$PATH"
+RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 | tar xj
+ENV PATH "/home/$USER/gcc-arm-none-eabi-10.3-2021.10/bin:$PATH"
 
 # Install Cortex-A AArch64 bare metal GNU tools
-RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf.tar.xz | tar xJ
-ENV PATH "/home/$USER/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf/bin:$PATH"
+RUN wget -qO- https://developer.arm.com/-/media/Files/downloads/gnu-a/10.3-2021.07/binrel/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf.tar.xz | tar xJ
+ENV PATH "/home/$USER/gcc-arm-10.3-2021.07-x86_64-aarch64-none-elf/bin:$PATH"
 
 # Modify the ARMLMD_LICENSE_FILE env var with your license server
 ENV ARMLMD_LICENSE_FILE "7010@localhost"
 ENV ARM_TOOL_VARIANT  "ult"
 
 # environment
-RUN echo ". /home/$USER/FM/FastModelsTools_11.14/source_all.sh" >> /home/$USER/.bashrc
+RUN echo ". /home/$USER/FM/FastModelsTools_11.16/source_all.sh" >> /home/$USER/.bashrc
 RUN echo "set auto-load safe-path /" >> /home/$USER/.gdbinit

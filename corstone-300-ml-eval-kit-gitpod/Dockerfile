@@ -15,7 +15,7 @@ WORKDIR /home/$USER
 USER $USER
 
 # Arm Compiler 6 download file
-ENV AC6=DS500-BN-00026-r5p0-18rel0.tgz
+ENV AC6=DS500-BN-00026-r5p0-19rel0.tgz
 
 # Install Arm Compiler 6
 RUN wget https://developer.arm.com/-/media/Files/downloads/compiler/$AC6
@@ -27,8 +27,8 @@ RUN rm $AC6
 ENV PATH "/home/$USER/AC6/bin:$PATH"
 
 # Install Cortex-R and Cortex-M bare metal GNU tools
-RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 | tar xj
-ENV PATH "/home/$USER/gcc-arm-none-eabi-10-2020-q4-major/bin:$PATH"
+RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 | tar xj
+ENV PATH "/home/$USER/gcc-arm-none-eabi-10.3-2021.10/bin:$PATH"
 
 # Install cmake 3.15.6 required to build the Ethos-U55 driver
 RUN mkdir /home/$USER/cmake
@@ -48,10 +48,10 @@ RUN pip install --upgrade wheel pip setuptools
 RUN pip install ethos-u-vela
 
 # Download and install Corestone SSE-300 FVP MPS3
-RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/MPS3/FVP_Corstone_SSE-300_Ethos-U55_11.14_24.tgz | tar -xz
-RUN ./FVP_Corstone_SSE-300_Ethos-U55.sh --no-interactive --i-agree-to-the-contained-eula -d /home/$USER/FVP_Corstone_SSE-300_Ethos-U55
-RUN rm ./FVP_Corstone_SSE-300_Ethos-U55.sh
-ENV PATH "/home/$USER//FVP_Corstone_SSE-300_Ethos-U55/models/Linux64_GCC-6.4:$PATH"
+RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/FVP_Corstone_SSE-300_11.15_24.tgz | tar -xz
+RUN ./FVP_Corstone_SSE-300.sh --no-interactive --i-agree-to-the-contained-eula -d /home/$USER/FVP_Corstone_SSE-300
+RUN rm ./FVP_Corstone_SSE-300.sh
+ENV PATH "/home/$USER//FVP_Corstone_SSE-300/models/Linux64_GCC-6.4:$PATH"
 
 # Copy GDB Plugin for FVP
 RUN mkdir /home/$USER/system

@@ -1,4 +1,4 @@
-FROM amd64/ubuntu:18.04
+FROM amd64/ubuntu:20.04
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
@@ -18,7 +18,7 @@ WORKDIR /home/$USER
 USER $USER
 
 # Arm Compiler 6 download file
-ENV AC6=DS500-BN-00026-r5p0-18rel0.tgz
+ENV AC6=DS500-BN-00026-r5p0-19rel0.tgz
 
 # Install Arm Compiler 6
 RUN wget https://developer.arm.com/-/media/Files/downloads/compiler/$AC6
@@ -30,23 +30,24 @@ RUN rm $AC6
 ENV PATH "/home/$USER/AC6/bin:$PATH"
 
 # Download and install Corestone SSE-300 FVP MPS3
-RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/MPS3/FVP_Corstone_SSE-300_Ethos-U55_11.14_24.tgz | tar -xz
-RUN ./FVP_Corstone_SSE-300_Ethos-U55.sh --no-interactive --i-agree-to-the-contained-eula -d /home/$USER/FVP_Corstone_SSE-300_Ethos-U55 
-RUN rm ./FVP_Corstone_SSE-300_Ethos-U55.sh
-ENV PATH "/home/$USER//FVP_Corstone_SSE-300_Ethos-U55/models/Linux64_GCC-6.4:$PATH"
+RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/FVP_Corstone_SSE-300_11.15_24.tgz | tar -xz
+RUN ./FVP_Corstone_SSE-300.sh --no-interactive --i-agree-to-the-contained-eula -d /home/$USER/FVP_Corstone_SSE-300
+RUN rm ./FVP_Corstone_SSE-300.sh
+ENV PATH "/home/$USER//FVP_Corstone_SSE-300/models/Linux64_GCC-6.4:$PATH"
 
 # Install Cortex-R and Cortex-M bare metal GNU tools
-RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10-2020q4/gcc-arm-none-eabi-10-2020-q4-major-x86_64-linux.tar.bz2 | tar xj
-ENV PATH "/home/$USER/gcc-arm-none-eabi-10-2020-q4-major/bin:$PATH"
+RUN wget -qO-  https://developer.arm.com/-/media/Files/downloads/gnu-rm/10.3-2021.10/gcc-arm-none-eabi-10.3-2021.10-x86_64-linux.tar.bz2 | tar xj
+ENV PATH "/home/$USER/gcc-arm-none-eabi-10.3-2021.10/bin:$PATH"
 
 # CMSIS pack support
-RUN wget https://github.com/ARM-software/CMSIS_5/releases/download/5.7.0/cbuild_install.0.10.0.sh
-RUN chmod +x cbuild_install.0.10.0.sh
-RUN ./cbuild_install.0.10.0.sh -x /home/$USER/cbuild
-RUN rm cbuild_install.0.10.0.sh
+RUN wget https://github.com/ARM-software/CMSIS_5/releases/download/5.7.0/cbuild_install.0.10.2.sh
+RUN chmod +x cbuild_install.0.10.2.sh
+RUN ./cbuild_install.0.10.2.sh -x /home/$USER/cbuild
+RUN rm cbuild_install.0.10.2.sh
 RUN mv /home/$USER/cbuild/bin/cbuildgen.lin /home/$USER/cbuild/bin/cbuildgen
 ADD --chown=$USER:$USER GCC.10.2.1.mak /home/$USER/cbuild/etc
 ADD --chown=$USER:$USER ARMCC.6.15.0.mak /home/$USER/cbuild/etc
+ADD --chown=$USER:$USER ARMCC.6.16.0.mak /home/$USER/cbuild/etc
 ENV CMSIS_PACK_ROOT "/home/$USER/packs"
 ENV CMSIS_COMPILER_ROOT "/home/$USER/cbuild/etc"
 ENV CMSIS_BUILD_ROOT "/home/$USER/cbuild/bin/"
