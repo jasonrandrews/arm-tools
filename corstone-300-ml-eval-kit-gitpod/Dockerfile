@@ -46,6 +46,7 @@ RUN python3.7 -m venv env
 ENV PATH=/home/$USER/env/bin:${PATH}
 RUN pip install --upgrade wheel pip setuptools
 RUN pip install ethos-u-vela
+RUN pip install Pillow
 
 # Download and install Corestone SSE-300 FVP MPS3
 RUN wget -qO- https://developer.arm.com/-/media/Arm%20Developer%20Community/Downloads/OSS/FVP/Corstone-300/FVP_Corstone_SSE-300_11.15_24.tgz | tar -xz
@@ -61,6 +62,7 @@ COPY --chown=$USER:$USER GDBreadme.txt /home/$USER/system
 # Modify the ARMLMD_LICENSE_FILE env var with your license server
 ENV ARMLMD_LICENSE_FILE "7010@localhost"
 ENV ARM_TOOL_VARIANT  "ult"
-RUN echo "export PIP_USER=false" >> /home/$USER/.bashrc
+ENV GIT_SSL_NO_VERIFY 1
+ENV PIP_USER "false"
 
 
